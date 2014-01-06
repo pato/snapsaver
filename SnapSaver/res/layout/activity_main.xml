@@ -17,32 +17,6 @@
         android:text="@string/instructions"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/checkVids"
-        android:layout_marginLeft="34dp"
-        android:layout_toRightOf="@+id/checkVids"
-        android:text="Save Snaps" />
-
-    <CheckBox
-        android:id="@+id/checkVids"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="19dp"
-        android:text="Videos" />
-
-    <CheckBox
-        android:id="@+id/checkPics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkVids"
-        android:layout_below="@+id/button1"
-        android:text="Pictures" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -50,7 +24,7 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
-        android:text="Thank you for using SnapSaver by Thomas Grothe. If you like my work, feel free to donate via paypal to grothedev@gmail.com"
+        android:text="@string/footer"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="12sp" />
 
@@ -63,13 +37,48 @@
         android:text="Checking for root access..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkGallery"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/readyBtn" />
+
+    <CheckBox
+        android:id="@+id/checkVids"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/checkRoot"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="28dp"
+        android:text="@string/video" />
+
+    <CheckBox
+        android:id="@+id/checkPics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkVids"
+        android:layout_alignBottom="@+id/checkVids"
+        android:layout_alignLeft="@+id/textView1"
+        android:text="@string/picture" />
+
     <CheckBox
         android:id="@+id/checkStories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkPics"
+        android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/checkPics"
-        android:layout_marginTop="18dp"
-        android:text="Stories (disabled until i figure out how to decrypt stories)" />
+        android:text="@string/story" />
+
+    <CheckBox
+        android:id="@+id/checkGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/checkStories"
+        android:layout_alignBottom="@+id/checkStories"
+        android:layout_alignLeft="@+id/checkVids"
+        android:text="@string/gallery" />
 
 </RelativeLayout>
