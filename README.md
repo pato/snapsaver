@@ -12,7 +12,7 @@ Usage:
 Pictures and videos are saved to /storage/sdcard0/savedsnaps
 
 --------
-Download the signed [APK](https://github.com/pato/snapsaver/Snaps.apk)
+Download the signed [APK](https://github.com/pato/snapsaver/blob/master/Snaps.apk?raw=true)
 
 --------
 Original code: [Thomas Grothe](https://github.com/grothedev/snapsaver)
