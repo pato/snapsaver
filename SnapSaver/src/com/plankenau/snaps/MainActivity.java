@@ -133,7 +133,6 @@ public class MainActivity extends Activity {
 		@Override
 		public void run() {
 			renameAndDecrypt();
-			toastMessage("now starting decryption", 1);
 		}
 	};
 
@@ -148,7 +147,7 @@ public class MainActivity extends Activity {
 		
 		try {
 			p = Runtime.getRuntime().exec("su");
-			toastMessage("copying snaps", 2);
+			toastMessage("Copying snaps", 2);
 			PrintStream stdin = new PrintStream(p.getOutputStream()); 
 			stdin.println("mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system");
 			stdin.println("mkdir " + extStoragePath + "/savedsnaps");
@@ -195,9 +194,19 @@ public class MainActivity extends Activity {
 			
 		} //end root shell
 		
+		if (savePics){
+			try{
+				int snapsFound = new File(extStorageFile, "Android/data/com.snapchat.android/cache/received_image_snaps/").list().length;
+				toastMessage("Found "+snapsFound+" pictures!", 1);
+			}catch (Exception e){
+				//toastMessage("Error counting snaps!",1);
+			}
+		}
 		if (saveVids){
-			startTimer(new File(extStorageFile, "Android/data/com.snapchat.android/cache/received_video_snaps").list().length * 1500 + 2000); //1000 ms for each video so they are done copying by the time they are decrypted
+			int vidsFound = new File(extStorageFile, "Android/data/com.snapchat.android/cache/received_video_snaps/").list().length;
+			startTimer(vidsFound * 1500 + 2000); //1000 ms for each video so they are done copying by the time they are decrypted
 		} else startTimer(8000);
+		
 		
 	}
 	
@@ -309,32 +318,42 @@ public class MainActivity extends Activity {
 		File[] storiesVids = new File(savedsnaps, "stories/vids").listFiles();
 		
 		if (savePics){
+			this.toastMessage("Decrypting pictures...", 2);
 			removeNoMediaAndDecrypt(pics, false);
+			this.toastMessage("Done!", 2);
 		}
 		if (saveVids){
+			this.toastMessage("Decrypting videos...", 2);
 			removeNoMediaAndDecrypt(vids, false);
+			this.toastMessage("Done!", 2);
 		}
 		if (saveStories){
 			removeNoMediaAndDecrypt(storiesPics, true);
 			removeNoMediaAndDecrypt(storiesVids, true);
 		}
-		
-		
-		
-		toastMessage("snaps saved", 1);
 	}
 	
-	public void removeNoMediaAndDecrypt(File[] f, boolean story){//removes ".nomedia" from all files within directory f
+	public void removeNoMediaAndDecrypt(File[] f, boolean story){
 		if (f != null){ 
 			for (int i = 0; i < f.length; i++) {
 				String fileName = f[i].getName();
 				if (fileName.contains("nomedia")){
-					String newFileName = fileName.substring(0, fileName.length() - 8);
+					String newFileName = fileName.substring(0, fileName.length() - 8); //remove .nomedia
 					
 					File encryptedFile = new File(f[i].getParent(), newFileName);
 					
-					f[i].renameTo(encryptedFile); 
+					//this.toastMessage("Decrypting: "+encryptedFile, 1);
+					
+					f[i].renameTo(encryptedFile);
 					f[i].delete();
+					
+					try{
+						decrypt(encryptedFile);
+					}catch(Exception e){
+						toastMessage("Error decrypting: "+e.getLocalizedMessage(),1);
+					}
+					
+					
 					
 					Log.d(encryptedFile.toString(), encryptedFile.getPath());
 					
