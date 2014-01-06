@@ -1,15 +1,17 @@
 Snaps
 =====
 
-An android app that saves pictures and videos received via Snapchat!
+An open-source android app that saves and decrypts pictures and videos received via Snapchat!
 
 Usage:
 
-1. Open Snapchat and wait for pictures, videos to download
+1. Open Snapchat and wait for pictures and videos to download
 2. Open Snaps
 3. Click on 'Save Snaps!'
 
 Pictures and videos are saved to /storage/sdcard0/savedsnaps
+
+Note: requires root to save and decrypt pictures (video works without root)
 
 --------
 Download the signed [APK](https://github.com/pato/snapsaver/blob/master/Snaps.apk?raw=true)
