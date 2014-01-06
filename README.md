@@ -14,6 +14,7 @@ Pictures and videos are saved to /storage/sdcard0/savedsnaps
 Note: requires root to save and decrypt pictures (video works without root)
 
 --------
+
 Download the signed [APK](https://github.com/pato/snapsaver/blob/master/Snaps.apk?raw=true)
 
 --------
