@@ -3,6 +3,8 @@ Snaps
 
 An open-source android app that saves and decrypts pictures and videos received via Snapchat!
 
+![Snaps](/screen.png)
+
 Usage:
 
 1. Open Snapchat and wait for pictures and videos to download
